@@ -1,3 +1,3 @@
-<?php
-  $con = new mysqli('localhost','root','','Polizas de Mantenimiento');
+<?php @session_start();
+$con = new mysqli('localhost','root','','polizas de mantenimiento');
  ?>
