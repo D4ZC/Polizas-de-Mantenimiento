@@ -6,24 +6,23 @@
       <div class="card-content">
         <span class="card-title">Alta de Usuario</span>
         <form class="form" action="ins_usuarios.php" method="post" enctype="multipart/form-data">
-
-          <div class="imput-field">
+          <div class="input-field">
             <label for="nick">Nick:</label>
             <!--Validadacion de tamaño y caracteres-->
-            <input type="text" name= "nick" required autofocus title=" MINIMIMO 8 Y MAXIMO 9 LETRAS " pattern="[A-Za-z]{8,15}"
-            id = "nick" onblur="may(this.value, this.id)">
+            <input type="text" name= "nick" required autofocus title=" MINIMIMO 8 Y MAXIMO 15 LETRAS " pattern="[A-Za-z]{8,15}"
+            id="nick" onblur="may(this.value, this.id)">
           </div>
           <!--Validar que no exista-->
           <div class= "validacion"></div>
 
           <!--PASSWORD-->
-          <div class="imput-field">
+          <div class="input-field">
             <label for="pass1">Contraseña:</label>
             <!--Validadacion de tamaño y caracteres-->
             <input type="password" name= "pass1" title="Contraseña con NUMEROS,LETRAS,MAYUSCULAS,MINUSCULAS" pattern="[A-Za-Z0-9]{8,15}" id = "pass1" required>
 
           </div>
-          <div class="imput-field">
+          <div class="input-field">
             <label for="pass2">Verificar Contraseña:</label>
             <!--Validadacion de tamaño y caracteres-->
             <input type="password"  title="Contraseña con NUMEROS,LETRAS,MAYUSCULAS,MINUSCULAS" pattern="[A-Za-Z0-9]{8,15}" id = "pass2" required>
@@ -31,12 +30,13 @@
           </div>
           <select name="nivel" required>
             <option value="" disabled selected >SELECCIONA EL NIVEL DE USUARIO</option>
+            <option valie="ADMINISTRADOR">ADMINISTRADOR</option>
             <option valie="CLIENTE">CLIENTE</option>
             <option valie="PROVEEDOR">ASESOR</option>
           </select>
 
           <!--Nombre Completo-->
-          <div class="imput-field">
+          <div class="input-field">
             <label for="nombre">Nombre:</label>
             <!--Validadacion de tamaño y caracteres-->
             <input type="text" name= "nombre" title="Nombre del Usuario" id = "nombre" onblur="may(this.value, this.id)" required
@@ -44,7 +44,7 @@
 
           </div>
           <!--Email-->
-          <div class="imput-field">
+          <div class="input-field">
             <label for="email">Correo electronico:</label>
             <!--Validadacion de tamaño y caracteres-->
             <input type="email" name= "correo" title="Correo Electronico" id = "Correo">
@@ -68,24 +68,22 @@
   </div>
 </div>
 
+
+
+
 <?php include '../extend/scripts.php'; ?>
-<noscript>
- <a href="https://www.enable-javascript.com/es/">
-</a>
-</noscript>
   <script>
     $('#nick').change(function(){
-      $.post('ajax_validacion_nick.php',{
+      $.post('ajax_validacion.php',{
           nick:$('#nick').val(),
           beforeSend: function(){
-            $('.validacion').html("...Procesando...");
+            $('.validacion').html("Procesando...");
           }
-      },function(respuesta){
-        $('.validacion').html(respuesta);
-      }
-    )
-    });
 
+      }, function(respuesta){
+        $('.validacion').html(respuesta);
+      });
+    });
     $('#pass2').change(function(event){
       if($('#pass1').val() == $('#pass2').val()){
         swal('Correcto..','Constraseñas Coinciden','success');
@@ -93,8 +91,6 @@
         swal('Sorry','ERROR Contraseñas NO coinciden','error');
       }
     });
-
-
   </script>
 
 </body>

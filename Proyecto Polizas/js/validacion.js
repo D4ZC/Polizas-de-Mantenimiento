@@ -1,5 +1,5 @@
 $('#nick').change(function(){
-      $.post('ajax_validacion_nick.php',{
+      $.post('ajax_validacion.php',{
           nick:$('#nick').val(),
           beforeSend: function(){
             $('.validacion').html("Ingresando al sistema");
@@ -8,7 +8,7 @@ $('#nick').change(function(){
         $('.validacion').html(respuesta);
       });
     });
-$('#btn_guardar').hide();
+  $('#btn_guardar').hide();
 $('#pass2').change(function(event){
     if($('#pass1').val() == $('#pass2').val()){
      swal('Exito','Acceso concedido','success');
@@ -24,4 +24,3 @@ $('.form').keypress(function(e){
      return false;
      }
 });
-

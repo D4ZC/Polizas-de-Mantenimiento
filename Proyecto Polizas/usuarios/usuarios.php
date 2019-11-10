@@ -25,26 +25,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $buscar = substr($nombre,$i,1);
         if(strpos($caracteres,$buscar)== false){
             header('location:../extend/alerta.php?msj=El nombre no contiene solo letras&c=us&p=in&t=error');
-            exit; 
+            exit;
         }
     }
-
 
     $usuario = srtlen($nick);
     $contra = srtlen($pass1);
 
     if($usuario < 8 || $usuario >15){
         header('location:../extend/alerta.php?msj=El nick debe contener entre 8 y 15 caracteres&c=us&p=in&t=error');
-        exit; 
+        exit;
     }
     if($contra < 8 || $contra >15){
-        header('location:../extend/alerta.php?msj=La contrasenia debe contener entre 8 y 15 caracteres&c=us&p=in&t=error');
-        exit; 
+        header('location:../extend/alerta.php?msj=La contraseña debe contener entre 8 y 15 caracteres&c=us&p=in&t=error');
+        exit;
     }
     if(!empty($correo)){
         if (!filter_var($correo,FILTER_VALIDATE_EMAIL)){
         header('location:../extend/alerta.php?msj=El email no es valido&c=us&p=in&t=error');
-        exit; 
+        exit;
         }
     }
 
@@ -60,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $ruta = $ruta."/".$nick.'.'.$extension;
     }else {
         header('location:../extend/alerta.php?msj=Formato de imagen no es  valido&c=us&p=in&t=error');
-        exit; 
+        exit;
     }
 
     }else {
@@ -70,7 +69,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $ins = $con->query("INSERT INTO usuario VALUES ('','$nick','$pass1','$nombre','$correo','$nivel',1,'$ruta')");
     if($ins){
         header('location:../extend/alerta.php?msj=Usuario registrado con exito&c=us&p=in&t=success');
-         
 
     }else{
         header('location:../extend/alerta.php?msj=Usuario no registrado&c=us&p=in&t=error');
@@ -81,5 +79,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }else{
     header('location:../extend/alerta.php?msj=Utiliza el formulario&c=us&p=in&t=error');
 }
-
 ?>
